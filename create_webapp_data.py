@@ -15,8 +15,10 @@ from dbtools.constants import WEBAPP_PATH, MEASUREMENTS_PATH, TARGETS_PATH
 
 def measurement_rank(entry):
     order = [
-        {'source': 'nebulabox', 'form': 'over-ear', 'rig': 'unknown'},
+        {'source': 'nebulabox', 'form': 'in-ear', 'rig': '711'},
+        {'source': 'nebulabox', 'form': 'over-ear', 'rig': '711'},
         {'source': 'nebulabox', 'form': 'in-ear', 'rig': 'unknown'},
+        {'source': 'nebulabox', 'form': 'over-ear', 'rig': 'unknown'},
         
         {'source': 'oratory1990', 'form': 'over-ear', 'rig': 'unknown'},
         {'source': 'crinacle', 'form': 'over-ear', 'rig': 'GRAS 43AG-7'},

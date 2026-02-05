@@ -261,13 +261,26 @@ const App = (props) => {
   };
 
   const getPreferredTarget = (source, form, rig) => {
-    let targetLabel = preferredTargetsRef.current[source][form];
+    // alert(`Source: ${source}, Form: ${form}, rig: ${rig}, preferredTargetsRef.current: ${preferredTargetsRef.current}`); 
+
+    const sourceConfig = preferredTargetsRef.current[source];
+    
+    if (!sourceConfig) {
+        // alert(`CRITICAL: Source "${source}" is missing in preferredTargetsRef!`);
+        return "Harman Over-Ear 2018";
+    }
+    let targetLabel = sourceConfig[form];
+    
+    if (!targetLabel) {
+        // alert(`CRITICAL: Form "${form}" is missing for source "${source}"!`);
+        return "Harman Over-Ear 2018";
+    }
+
     if (typeof(targetLabel) !== 'string') {
-      // Preferred target defines rig level
-      targetLabel = targetLabel[rig];
+        targetLabel = targetLabel[rig] || Object.values(targetLabel)[0];
     }
     return targetLabel;
-  };
+};
 
   const onMeasurementSelected = (measurement) => {
     if (measurement === null) {
