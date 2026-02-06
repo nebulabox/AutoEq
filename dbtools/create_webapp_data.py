@@ -15,6 +15,7 @@ def write_targets():
         {
             'file': TARGETS_PATH.joinpath('AutoEq in-ear.csv'),
             'compatible': [
+                {'source': 'nebulabox', 'form': 'in-ear'},
                 {'source': 'Auriculares Argentina', 'form': 'in-ear'},
                 {'source': 'Bakkwatan', 'form': 'in-ear'},
                 {'source': 'crinacle', 'form': 'in-ear', 'rig': '711'},
@@ -93,6 +94,7 @@ def write_targets():
             'file': TARGETS_PATH.joinpath('Harman in-ear 2019 without bass.csv'),
             'label': 'Harman in-ear 2019',
             'compatible': [
+                {'source': 'nebulabox', 'form': 'in-ear'},
                 {'source': 'Auriculares Argentina', 'form': 'in-ear'},
                 {'source': 'Bakkwatan', 'form': 'in-ear'},
                 {'source': 'crinacle', 'form': 'in-ear', 'rig': '711'},
@@ -123,6 +125,7 @@ def write_targets():
             'file': TARGETS_PATH.joinpath('Harman over-ear 2018 without bass.csv'),
             'label': 'Harman over-ear 2018',
             'compatible': [
+                {'source': 'nebulabox', 'form': 'over-ear'},
                 {'source': 'Auriculares Argentina', 'form': 'over-ear'},
                 {'source': 'crinacle', 'form': 'over-ear', 'rig': 'GRAS 43AG-7'},
                 {'source': 'Filk', 'form': 'over-ear'},
@@ -149,6 +152,7 @@ def write_targets():
         {
             'file': TARGETS_PATH.joinpath('HMS II.3 AutoEq in-ear.csv'),
             'compatible': [
+                {'source': 'nebulabox', 'form': 'in-ear'},
                 {'source': 'Headphone.com Legacy', 'form': 'in-ear'},
                 {'source': 'Headphone.com Legacy', 'form': 'earbud'},
                 {'source': 'Innerfidelity', 'form': 'in-ear'},
@@ -170,6 +174,7 @@ def write_targets():
             'file': TARGETS_PATH.joinpath('HMS II.3 Harman in-ear 2019 without bass.csv'),
             'label': 'HMS II.3 Harman in-ear 2019',
             'compatible': [
+                {'source': 'nebulabox', 'form': 'in-ear'},
                 {'source': 'Headphone.com Legacy', 'form': 'in-ear'},
                 {'source': 'Headphone.com Legacy', 'form': 'earbud'},
                 {'source': 'Innerfidelity', 'form': 'in-ear'},
@@ -183,6 +188,7 @@ def write_targets():
             'file': TARGETS_PATH.joinpath('HMS II.3 Harman over-ear 2018 without bass.csv'),
             'label': 'HMS II.3 Harman over-ear 2018',
             'compatible': [
+                {'source': 'nebulabox', 'form': 'over-ear'},
                 {'source': 'Headphone.com Legacy', 'form': 'over-ear'},
                 {'source': 'Innerfidelity', 'form': 'over-ear'},
                 {'source': 'Rtings', 'form': 'over-ear', 'rig': 'HMS II.3'},

@@ -1,3 +1,44 @@
 url	source_name	name	form	rig
-file://measurements/crinacle/raw_data/measurements/nebulabox/ATH-LS200.jpg	Audio-Technica ATH-LS200	Audio-Technica ATH-LS200	in-ear	ignore
-file://measurements/crinacle/raw_data/measurements/nebulabox/Flat	Flat	Flat	over-ear	ignore
+file://measurements/crinacle/raw_data/measurements/nebulabox/in-ear/Sony MDR-XB50.csv	Sony MDR-XB50	Sony MDR-XB50	in-ear	ignore
+file://measurements/crinacle/raw_data/measurements/nebulabox/in-ear/Apple AirPods (1st generation).csv	Apple AirPods (1st generation)	Apple AirPods (1st generation)	in-ear	ignore
+file://measurements/crinacle/raw_data/measurements/nebulabox/in-ear/Sony WF-1000XM5.csv	Sony WF-1000XM5	Sony WF-1000XM5	in-ear	ignore
+file://measurements/crinacle/raw_data/measurements/nebulabox/in-ear/Sony WI-1000X.csv	Sony WI-1000X	Sony WI-1000X	in-ear	ignore
+file://measurements/crinacle/raw_data/measurements/nebulabox/in-ear/Sennheiser IE 900.csv	Sennheiser IE 900	Sennheiser IE 900	in-ear	ignore
+file://measurements/crinacle/raw_data/measurements/nebulabox/in-ear/Audio-Technica ATH-LS200.csv	Audio-Technica ATH-LS200	Audio-Technica ATH-LS200	in-ear	ignore
+file://measurements/crinacle/raw_data/measurements/nebulabox/in-ear/Shure SE846.csv	Shure SE846	Shure SE846	in-ear	ignore
+file://measurements/crinacle/raw_data/measurements/nebulabox/in-ear/FiiO FA7.csv	FiiO FA7	FiiO FA7	in-ear	ignore
+file://measurements/crinacle/raw_data/measurements/nebulabox/in-ear/AKG N20.csv	AKG N20	AKG N20	in-ear	ignore
+file://measurements/crinacle/raw_data/measurements/nebulabox/in-ear/AKG N5005.csv	AKG N5005	AKG N5005	in-ear	ignore
+file://measurements/crinacle/raw_data/measurements/nebulabox/in-ear/Samsung Galaxy Buds2 Pro.csv	Samsung Galaxy Buds2 Pro	Samsung Galaxy Buds2 Pro	in-ear	ignore
+file://measurements/crinacle/raw_data/measurements/nebulabox/over-ear/Bose QuietComfort 35 II.csv	Bose QuietComfort 35 II	Bose QuietComfort 35 II	over-ear	ignore
+file://measurements/crinacle/raw_data/measurements/nebulabox/over-ear/Sony MDR-Z1R.csv	Sony MDR-Z1R	Sony MDR-Z1R	over-ear	ignore
+file://measurements/crinacle/raw_data/measurements/nebulabox/over-ear/AKG K712.csv	AKG K712	AKG K712	over-ear	ignore
+file://measurements/crinacle/raw_data/measurements/nebulabox/over-ear/Beyerdynamic DT 770 Pro.csv	Beyerdynamic DT 770 Pro	Beyerdynamic DT 770 Pro	over-ear	ignore
+file://measurements/crinacle/raw_data/measurements/nebulabox/over-ear/Sennheiser Momentum 4 Wireless.csv	Sennheiser Momentum 4 Wireless	Sennheiser Momentum 4 Wireless	over-ear	ignore
+file://measurements/crinacle/raw_data/measurements/nebulabox/over-ear/Shure SRH840A.csv	Shure SRH840A	Shure SRH840A	over-ear	ignore
+file://measurements/crinacle/raw_data/measurements/nebulabox/over-ear/Sony MDR-1A.csv	Sony MDR-1A	Sony MDR-1A	over-ear	ignore
+file://measurements/crinacle/raw_data/measurements/nebulabox/over-ear/Focal Stellia.csv	Focal Stellia	Focal Stellia	over-ear	ignore
+file://measurements/crinacle/raw_data/measurements/nebulabox/over-ear/AKG K271 MKII.csv	AKG K271 MKII	AKG K271 MKII	over-ear	ignore
+file://measurements/crinacle/raw_data/measurements/nebulabox/over-ear/AKG Q701.csv	AKG Q701	AKG Q701	over-ear	ignore
+file://measurements/crinacle/raw_data/measurements/nebulabox/over-ear/Beyerdynamic DT 990 Pro.csv	Beyerdynamic DT 990 Pro	Beyerdynamic DT 990 Pro	over-ear	ignore
+file://measurements/crinacle/raw_data/measurements/nebulabox/over-ear/Sennheiser HD 660S2.csv	Sennheiser HD 660S2	Sennheiser HD 660S2	over-ear	ignore
+file://measurements/crinacle/raw_data/measurements/nebulabox/over-ear/Sennheiser HD 598.csv	Sennheiser HD 598	Sennheiser HD 598	over-ear	ignore
+file://measurements/crinacle/raw_data/measurements/nebulabox/over-ear/HIFIMAN Ananda Nano.csv	HIFIMAN Ananda Nano	HIFIMAN Ananda Nano	over-ear	ignore
+file://measurements/crinacle/raw_data/measurements/nebulabox/over-ear/Sennheiser HD 800.csv	Sennheiser HD 800	Sennheiser HD 800	over-ear	ignore
+file://measurements/crinacle/raw_data/measurements/nebulabox/over-ear/Beats Studio3 Wireless.csv	Beats Studio3 Wireless	Beats Studio3 Wireless	over-ear	ignore
+file://measurements/crinacle/raw_data/measurements/nebulabox/over-ear/Beyerdynamic DT 880 Edition (600 Ohm).csv	Beyerdynamic DT 880 Edition (600 Ohm)	Beyerdynamic DT 880 Edition (600 Ohm)	over-ear	ignore
+file://measurements/crinacle/raw_data/measurements/nebulabox/over-ear/Sennheiser HD 660S2.csv	Sennheiser HD 660S2	Sennheiser HD 660S2	over-ear	ignore
+file://measurements/crinacle/raw_data/measurements/nebulabox/over-ear/Sennheiser HD 598.csv	Sennheiser HD 598	Sennheiser HD 598	over-ear	ignore
+file://measurements/crinacle/raw_data/measurements/nebulabox/over-ear/HIFIMAN Susvara.csv	HIFIMAN Susvara	HIFIMAN Susvara	over-ear	ignore
+file://measurements/crinacle/raw_data/measurements/nebulabox/over-ear/Focal Utopia.csv	Focal Utopia	Focal Utopia	over-ear	ignore
+file://measurements/crinacle/raw_data/measurements/nebulabox/over-ear/HIFIMAN Arya.csv	HIFIMAN Arya	HIFIMAN Arya	over-ear	ignore
+file://measurements/crinacle/raw_data/measurements/nebulabox/over-ear/Audio-Technica ATH-R70x.csv	Audio-Technica ATH-R70x	Audio-Technica ATH-R70x	over-ear	ignore
+file://measurements/crinacle/raw_data/measurements/nebulabox/over-ear/Apple AirPods Max.csv	Apple AirPods Max	Apple AirPods Max	over-ear	ignore
+file://measurements/crinacle/raw_data/measurements/nebulabox/over-ear/AKG K701.csv	AKG K701	AKG K701	over-ear	ignore
+file://measurements/crinacle/raw_data/measurements/nebulabox/over-ear/HIFIMAN Edition XS.csv	HIFIMAN Edition XS	HIFIMAN Edition XS	over-ear	ignore
+file://measurements/crinacle/raw_data/measurements/nebulabox/over-ear/Sennheiser HD 600.csv	Sennheiser HD 600	Sennheiser HD 600	over-ear	ignore
+file://measurements/crinacle/raw_data/measurements/nebulabox/over-ear/Audio-Technica ATH-MSR7b.csv	Audio-Technica ATH-MSR7b	Audio-Technica ATH-MSR7b	over-ear	ignore
+file://measurements/crinacle/raw_data/measurements/nebulabox/over-ear/Bose QuietComfort 45.csv	Bose QuietComfort 45	Bose QuietComfort 45	over-ear	ignore
+file://measurements/crinacle/raw_data/measurements/nebulabox/over-ear/Audeze LCD-X.csv	Audeze LCD-X	Audeze LCD-X	over-ear	ignore
+file://measurements/crinacle/raw_data/measurements/nebulabox/over-ear/Sony WH-1000XM5.csv	Sony WH-1000XM5	Sony WH-1000XM5	over-ear	ignore
+file://measurements/crinacle/raw_data/measurements/nebulabox/over-ear/Audio-Technica ATH-AD2000X.csv	Audio-Technica ATH-AD2000X	Audio-Technica ATH-AD2000X	over-ear	ignore
