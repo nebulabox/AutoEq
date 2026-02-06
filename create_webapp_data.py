@@ -15,8 +15,6 @@ from dbtools.constants import WEBAPP_PATH, MEASUREMENTS_PATH, TARGETS_PATH
 
 def measurement_rank(entry):
     order = [
-        {'source': 'nebulabox', 'form': 'in-ear', 'rig': '711'},
-        {'source': 'nebulabox', 'form': 'over-ear', 'rig': '711'},
         {'source': 'nebulabox', 'form': 'in-ear', 'rig': 'unknown'},
         {'source': 'nebulabox', 'form': 'over-ear', 'rig': 'unknown'},
         
@@ -39,8 +37,6 @@ def measurement_rank(entry):
         {'source': 'rtings', 'form': 'earbud', 'rig': 'unknown'},
         {'source': 'innerfidelity', 'form': 'earbud', 'rig': 'unknown'},
         {'source': 'headphonecom', 'form': 'earbud', 'rig': 'unknown'},
-
-        # Added manually due to https://github.com/jaakkopasanen/AutoEq/issues/836
         {'source': 'HypetheSonics', 'form': 'in-ear', 'rig': 'GRAS RA0045'},
         {'source': 'Innerfidelity', 'form': 'in-ear', 'rig': 'unknown'},
         {'source': 'Regan Cipher', 'form': 'in-ear', 'rig': 'unknown'},
@@ -100,7 +96,7 @@ def measurement_rank(entry):
 def write_entries_and_measurements():
     entries = dict()
     measurements = dict()
-    for hp_path in tqdm(list(MEASUREMENTS_PATH.glob('*/data/**/*.csv'))):
+    for hp_path in tqdm(list(MEASUREMENTS_PATH.glob('nebulabox/data/**/*.csv'))):
         parts = hp_path.parts[hp_path.parts.index('data') + 1:]
         source = hp_path.parts[hp_path.parts.index('data') - 1]
         form = parts[0]
@@ -132,186 +128,265 @@ def write_entries_and_measurements():
         json.dump(entries, fh, ensure_ascii=False, indent=4)
 
 
-def write_compensations():
-    compensations = [
+def write_targets():
+    ####### [BEGIN] standard from dbtools ########
+    targets = [
         {
-            'file': TARGETS_PATH.joinpath('autoeq_in-ear.csv'),
-            'label': 'AutoEq In-ear',
+            'file': TARGETS_PATH.joinpath('AutoEq in-ear.csv'),
             'compatible': [
+                {'source': 'nebulabox', 'form': 'in-ear'},
+                {'source': 'Auriculares Argentina', 'form': 'in-ear'},
+                {'source': 'Bakkwatan', 'form': 'in-ear'},
                 {'source': 'crinacle', 'form': 'in-ear', 'rig': '711'},
-                {'source': 'oratory1990', 'form': 'in-ear', 'rig': 'unknown'},
-                {'source': 'oratory1990', 'form': 'earbud', 'rig': 'unknown'}
+                {'source': 'DHRME', 'form': 'in-ear'},
+                {'source': 'Fahryst', 'form': 'in-ear'},
+                {'source': 'Filk', 'form': 'in-ear'},
+                {'source': 'freeryder05', 'form': 'in-ear'},
+                {'source': 'Harpo', 'form': 'in-ear'},
+                {'source': 'Hi End Portable', 'form': 'in-ear'},
+                {'source': 'HypetheSonics', 'form': 'in-ear', 'rig': 'GRAS RA0045'},
+                {'source': 'Jaytiss', 'form': 'in-ear'},
+                {'source': 'Kazi', 'form': 'in-ear'},
+                {'source': 'Kazi', 'form': 'earbud'},
+                {'source': 'kr0mka', 'form': 'in-ear'},
+                {'source': 'kr0mka', 'form': 'earbud'},
+                {'source': 'oratory1990', 'form': 'in-ear'},
+                {'source': 'oratory1990', 'form': 'earbud'},
+                {'source': 'Regan Cipher', 'form': 'in-ear'},
+                {'source': 'Regan Cipher', 'form': 'earbud'},
+                {'source': 'RikudouGoku', 'form': 'in-ear'},
+                {'source': 'Super Review', 'form': 'in-ear'},
+                {'source': 'Super Review', 'form': 'earbud'},
+                {'source': 'Ted\'s Squig Hoard', 'form': 'in-ear'},
+                {'source': 'ToneDeafMonk', 'form': 'in-ear'},
             ],
             'recommended': [
+                {'source': 'nebulabox', 'form': 'in-ear'},
+                {'source': 'Auriculares Argentina', 'form': 'in-ear'},
+                {'source': 'Bakkwatan', 'form': 'in-ear'},
                 {'source': 'crinacle', 'form': 'in-ear', 'rig': '711'},
-                {'source': 'oratory1990', 'form': 'in-ear', 'rig': 'unknown'},
-                {'source': 'oratory1990', 'form': 'earbud', 'rig': 'unknown'}
+                {'source': 'DHRME', 'form': 'in-ear'},
+                {'source': 'Fahryst', 'form': 'in-ear'},
+                {'source': 'Filk', 'form': 'in-ear'},
+                {'source': 'freeryder05', 'form': 'in-ear'},
+                {'source': 'Harpo', 'form': 'in-ear'},
+                {'source': 'Hi End Portable', 'form': 'in-ear'},
+                {'source': 'HypetheSonics', 'form': 'in-ear', 'rig': 'GRAS RA0045'},
+                {'source': 'Jaytiss', 'form': 'in-ear'},
+                {'source': 'Kazi', 'form': 'in-ear'},
+                {'source': 'Kazi', 'form': 'earbud'},
+                {'source': 'kr0mka', 'form': 'in-ear'},
+                {'source': 'kr0mka', 'form': 'earbud'},
+                {'source': 'oratory1990', 'form': 'in-ear'},
+                {'source': 'oratory1990', 'form': 'earbud'},
+                {'source': 'Regan Cipher', 'form': 'in-ear'},
+                {'source': 'Regan Cipher', 'form': 'earbud'},
+                {'source': 'RikudouGoku', 'form': 'in-ear'},
+                {'source': 'Super Review', 'form': 'in-ear'},
+                {'source': 'Super Review', 'form': 'earbud'},
+                {'source': 'Ted\'s Squig Hoard', 'form': 'in-ear'},
+                {'source': 'ToneDeafMonk', 'form': 'in-ear'},
             ],
-            'bassBoost': {'fc': 105, 'q': 0.7, 'gain': 9.5}
+            'bassBoost': {'fc': 105, 'q': 0.7, 'gain': 8}
         },
         {
-            'file': TARGETS_PATH.joinpath('diffuse_field_5128_-1dBpoct.csv'),
-            'label': 'Diffuse Field 5128 (-1 dB /oct)',
-            'compatible': [{'source': 'crinacle', 'form': 'in-ear', 'rig': 'Bruel & Kjaer 4620'}],
-            'recommended': [{'source': 'crinacle', 'form': 'in-ear', 'rig': 'Bruel & Kjaer 4620'}],
-            'bassBoost': {'fc': 105, 'q': 0.7, 'gain': 0}
+            'file': TARGETS_PATH.joinpath('crinacle EARS + 711 Harman over-ear 2018 without bass.csv'),
+            'label': 'crinacle EARS + 711 Harman over-ear 2018',
+            'compatible': [
+                {'source': 'crinacle', 'form': 'over-ear', 'rig': 'EARS + 711'},
+            ],
+            'recommended': [
+                {'source': 'crinacle', 'form': 'over-ear', 'rig': 'EARS + 711'},
+            ],
+            'bassBoost': {'fc': 105, 'q': 0.7, 'gain': 6}
         },
         {
-            'file': TARGETS_PATH.joinpath('diffuse_field_gras_kemar.csv'),
-            'label': 'Diffuse Field GRAS KEMAR',
-            'compatible': [],
-            'recommended': [],
-            'bassBoost': {'fc': 105, 'q': 0.7, 'gain': 0}
-        },
-        {
-            'file': TARGETS_PATH.joinpath('diffuse_field_iso_11904-2.csv'),
-            'label': 'Diffuse Field ISO 11904-2',
-            'compatible': [],
-            'recommended': [],
+            'file': TARGETS_PATH.joinpath('Diffuse field 5128 -1dB per octave.csv'),
+            'label': 'Diffuse Field 5128 (-1 dB/oct)',
             'bassBoost': {'fc': 105, 'q': 0.7, 'gain': 0}
         },
         {
             'file': TARGETS_PATH.joinpath('zero.csv'),
             'label': 'Flat',
-            'compatible': [],
-            'recommended': [],
             'bassBoost': {'fc': 105, 'q': 0.7, 'gain': 0}
         },
         {
-            'file': TARGETS_PATH.joinpath('harman_in-ear_2019v2_wo_bass.csv'),
-            'label': 'Harman In-ear 2019',
+            'file': TARGETS_PATH.joinpath('Harman in-ear 2019 without bass.csv'),
+            'label': 'Harman in-ear 2019',
             'compatible': [
+                {'source': 'nebulabox', 'form': 'in-ear'},
+                {'source': 'Auriculares Argentina', 'form': 'in-ear'},
+                {'source': 'Bakkwatan', 'form': 'in-ear'},
                 {'source': 'crinacle', 'form': 'in-ear', 'rig': '711'},
-                {'source': 'oratory1990', 'form': 'in-ear', 'rig': 'unknown'},
-                {'source': 'oratory1990', 'form': 'earbud', 'rig': 'unknown'}
+                {'source': 'DHRME', 'form': 'in-ear'},
+                {'source': 'Fahryst', 'form': 'in-ear'},
+                {'source': 'Filk', 'form': 'in-ear'},
+                {'source': 'freeryder05', 'form': 'in-ear'},
+                {'source': 'Harpo', 'form': 'in-ear'},
+                {'source': 'Hi End Portable', 'form': 'in-ear'},
+                {'source': 'HypetheSonics', 'form': 'in-ear', 'rig': 'GRAS RA0045'},
+                {'source': 'Jaytiss', 'form': 'in-ear'},
+                {'source': 'Kazi', 'form': 'in-ear'},
+                {'source': 'Kazi', 'form': 'earbud'},
+                {'source': 'kr0mka', 'form': 'in-ear'},
+                {'source': 'oratory1990', 'form': 'in-ear'},
+                {'source': 'oratory1990', 'form': 'earbud'},
+                {'source': 'Regan Cipher', 'form': 'in-ear'},
+                {'source': 'Regan Cipher', 'form': 'earbud'},
+                {'source': 'RikudouGoku', 'form': 'in-ear'},
+                {'source': 'Super Review', 'form': 'in-ear'},
+                {'source': 'Super Review', 'form': 'earbud'},
+                {'source': 'Ted\'s Squig Hoard', 'form': 'in-ear'},
+                {'source': 'ToneDeafMonk', 'form': 'in-ear'},
             ],
-            'recommended': [],
             'bassBoost': {'fc': 105, 'q': 0.7, 'gain': 9.5}
         },
         {
-            'file': TARGETS_PATH.joinpath('harman_over-ear_2018_wo_bass.csv'),
-            'label': 'Harman Over-ear 2018',
+            'file': TARGETS_PATH.joinpath('Harman over-ear 2018 without bass.csv'),
+            'label': 'Harman over-ear 2018',
             'compatible': [
+                {'source': 'nebulabox', 'form': 'over-ear'},
+                {'source': 'Auriculares Argentina', 'form': 'over-ear'},
                 {'source': 'crinacle', 'form': 'over-ear', 'rig': 'GRAS 43AG-7'},
-                {'source': 'oratory1990', 'form': 'over-ear', 'rig': 'unknown'}
+                {'source': 'Filk', 'form': 'over-ear'},
+                {'source': 'kr0mka', 'form': 'over-ear'},
+                {'source': 'Kuulokenurkka', 'form': 'over-ear'},
+                {'source': 'oratory1990', 'form': 'over-ear'},
+                {'source': 'Regan Cipher', 'form': 'over-ear'},
+                {'source': 'RikudouGoku', 'form': 'over-ear'},
+                {'source': 'Super Review', 'form': 'over-ear'},
             ],
             'recommended': [
+                {'source': 'nebulabox', 'form': 'over-ear'},
+                {'source': 'Auriculares Argentina', 'form': 'over-ear'},
                 {'source': 'crinacle', 'form': 'over-ear', 'rig': 'GRAS 43AG-7'},
-                {'source': 'oratory1990', 'form': 'over-ear', 'rig': 'unknown'}
+                {'source': 'Filk', 'form': 'over-ear'},
+                {'source': 'kr0mka', 'form': 'over-ear'},
+                {'source': 'Kuulokenurkka', 'form': 'over-ear'},
+                {'source': 'oratory1990', 'form': 'over-ear'},
+                {'source': 'Regan Cipher', 'form': 'over-ear'},
+                {'source': 'RikudouGoku', 'form': 'over-ear'},
+                {'source': 'Super Review', 'form': 'over-ear'},
             ],
             'bassBoost': {'fc': 105, 'q': 0.7, 'gain': 6}
         },
         {
-            'file': TARGETS_PATH.joinpath('headphonecom_autoeq_in-ear.csv'),
-            'label': 'Headphone.com Legacy AutoEq In-ear',
+            'file': TARGETS_PATH.joinpath('HMS II.3 AutoEq in-ear.csv'),
             'compatible': [
-                {'source': 'headphonecom', 'form': 'in-ear', 'rig': 'unknown'},
-                {'source': 'headphonecom', 'form': 'earbud', 'rig': 'unknown'},
+                {'source': 'nebulabox', 'form': 'in-ear'},
+                {'source': 'Headphone.com Legacy', 'form': 'in-ear'},
+                {'source': 'Headphone.com Legacy', 'form': 'earbud'},
+                {'source': 'Innerfidelity', 'form': 'in-ear'},
+                {'source': 'Innerfidelity', 'form': 'earbud'},
+                {'source': 'Rtings', 'form': 'in-ear', 'rig': 'HMS II.3'},
+                {'source': 'Rtings', 'form': 'earbud', 'rig': 'HMS II.3'},
             ],
             'recommended': [
-                {'source': 'headphonecom', 'form': 'in-ear', 'rig': 'unknown'},
-                {'source': 'headphonecom', 'form': 'earbud', 'rig': 'unknown'},
+                {'source': 'Headphone.com Legacy', 'form': 'in-ear'},
+                {'source': 'Headphone.com Legacy', 'form': 'earbud'},
+                {'source': 'Innerfidelity', 'form': 'in-ear'},
+                {'source': 'Innerfidelity', 'form': 'earbud'},
+                {'source': 'Rtings', 'form': 'in-ear', 'rig': 'HMS II.3'},
+                {'source': 'Rtings', 'form': 'earbud', 'rig': 'HMS II.3'},
+            ],
+            'bassBoost': {'fc': 105, 'q': 0.7, 'gain': 8}
+        },
+        {
+            'file': TARGETS_PATH.joinpath('HMS II.3 Harman in-ear 2019 without bass.csv'),
+            'label': 'HMS II.3 Harman in-ear 2019',
+            'compatible': [
+                {'source': 'nebulabox', 'form': 'in-ear'},
+                {'source': 'Headphone.com Legacy', 'form': 'in-ear'},
+                {'source': 'Headphone.com Legacy', 'form': 'earbud'},
+                {'source': 'Innerfidelity', 'form': 'in-ear'},
+                {'source': 'Innerfidelity', 'form': 'earbud'},
+                {'source': 'Rtings', 'form': 'in-ear', 'rig': 'HMS II.3'},
+                {'source': 'Rtings', 'form': 'earbud', 'rig': 'HMS II.3'},
             ],
             'bassBoost': {'fc': 105, 'q': 0.7, 'gain': 9.5}
         },
         {
-            'file': TARGETS_PATH.joinpath('headphonecom_harman_in-ear_2019v2_wo_bass.csv'),
-            'label': 'Headphone.com Legacy Harman In-ear 2019',
-            'compatible': [{'source': 'headphonecom', 'form': 'in-ear', 'rig': 'unknown'}],
-            'recommended': [],
-            'bassBoost': {'fc': 105, 'q': 0.7, 'gain': 9.5}
-        },
-        {
-            'file': TARGETS_PATH.joinpath('headphonecom_harman_over-ear_2018_wo_bass.csv'),
-            'label': 'Headphone.com Legacy Harman Over-ear 2018',
-            'compatible': [{'source': 'headphonecom', 'form': 'over-ear', 'rig': 'unknown'}],
-            'recommended': [{'source': 'headphonecom', 'form': 'over-ear', 'rig': 'unknown'}],
+            'file': TARGETS_PATH.joinpath('HMS II.3 Harman over-ear 2018 without bass.csv'),
+            'label': 'HMS II.3 Harman over-ear 2018',
+            'compatible': [
+                {'source': 'nebulabox', 'form': 'over-ear'},
+                {'source': 'Headphone.com Legacy', 'form': 'over-ear'},
+                {'source': 'Innerfidelity', 'form': 'over-ear'},
+                {'source': 'Rtings', 'form': 'over-ear', 'rig': 'HMS II.3'},
+            ],
+            'recommended': [
+                {'source': 'Headphone.com Legacy', 'form': 'over-ear'},
+                {'source': 'Innerfidelity', 'form': 'over-ear'},
+                {'source': 'Rtings', 'form': 'over-ear', 'rig': 'HMS II.3'},
+            ],
             'bassBoost': {'fc': 105, 'q': 0.7, 'gain': 6}
         },
         {
-            'file': TARGETS_PATH.joinpath('711_5128_delta.csv'),
-            'label': '711/5128 Delta',
+            'file': TARGETS_PATH.joinpath('JM-1 with Harman treble filter.csv'),
+            'label': 'JM-1 with Harman filters',
             'compatible': [
-                {'source': 'crinacle', 'form': 'in-ear', 'rig': 'unknown'},
-                {'source': 'oratory1990', 'form': 'in-ear', 'rig': 'unknown'},
-                {'source': 'oratory1990', 'form': 'earbud', 'rig': 'unknown'},
-            ],
-            'recommended': [],
-            'bassBoost': {'fc': 105, 'q': 0.7, 'gain': 0}
-        },
-        {
-            'file': TARGETS_PATH.joinpath('innerfidelity_autoeq_in-ear.csv'),
-            'label': 'Innerfidelity AutoEq In-ear',
-            'compatible': [
-                {'source': 'innerfidelity', 'form': 'in-ear', 'rig': 'unknown'},
-                {'source': 'innerfidelity', 'form': 'earbud', 'rig': 'unknown'},
+                {'source': 'crinacle', 'form': 'in-ear', 'rig': 'Bruel & Kjaer 4620'},
+                {'source': 'HypetheSonics', 'form': 'in-ear', 'rig': 'Bruel & Kjaer 5128'},
+                {'source': 'Rtings', 'form': 'in-ear', 'rig': 'Bruel & Kjaer 5128'},
             ],
             'recommended': [
-                {'source': 'innerfidelity', 'form': 'in-ear', 'rig': 'unknown'},
-                {'source': 'innerfidelity', 'form': 'earbud', 'rig': 'unknown'},
+                {'source': 'crinacle', 'form': 'in-ear', 'rig': 'Bruel & Kjaer 4620'},
+                {'source': 'HypetheSonics', 'form': 'in-ear', 'rig': 'Bruel & Kjaer 5128'},
+                {'source': 'Rtings', 'form': 'in-ear', 'rig': 'Bruel & Kjaer 5128'},
             ],
-            'bassBoost': {'fc': 105, 'q': 0.7, 'gain': 9.5}
+            'bassBoost': {'fc': 105, 'q': 0.7, 'gain': 6.5}
         },
         {
-            'file': TARGETS_PATH.joinpath('innerfidelity_harman_in-ear_2019v2_wo_bass.csv'),
-            'label': 'Innerfidelity Harman In-ear 2019',
+            'file': TARGETS_PATH.joinpath('LMG 5128 0.6 without bass.csv'),
             'compatible': [
-                {'source': 'innerfidelity', 'form': 'in-ear', 'rig': 'unknown'},
-                {'source': 'innerfidelity', 'form': 'earbud', 'rig': 'unknown'},
-            ],
-            'recommended': [],
-            'bassBoost': {'fc': 105, 'q': 0.7, 'gain': 9.5}
-        },
-        {
-            'file': TARGETS_PATH.joinpath('innerfidelity_harman_over-ear_2018_wo_bass.csv'),
-            'label': 'Innerfidelity Harman Over-ear 2018',
-            'compatible': [{'source': 'innerfidelity', 'form': 'over-ear', 'rig': 'unknown'}],
-            'recommended': [{'source': 'innerfidelity', 'form': 'over-ear', 'rig': 'unknown'}],
-            'bassBoost': {'fc': 105, 'q': 0.7, 'gain': 6}
-        },
-        {
-            'file': TARGETS_PATH.joinpath('rtings_autoeq_in-ear.csv'),
-            'label': 'Rtings AutoEq In-ear',
-            'compatible': [
-                {'source': 'rtings', 'form': 'in-ear', 'rig': 'unknown'},
-                {'source': 'rtings', 'form': 'earbud', 'rig': 'unknown'},
+                {'source': 'HypetheSonics', 'form': 'over-ear'},
+                {'source': 'HypetheSonics', 'form': 'earbud'},
+                {'source': 'Rtings', 'form': 'over-ear', 'rig': 'Bruel & Kjaer 5128'},
+                {'source': 'Rtings', 'form': 'earbud', 'rig': 'Bruel & Kjaer 5128'},
             ],
             'recommended': [
-                {'source': 'rtings', 'form': 'in-ear', 'rig': 'unknown'},
-                {'source': 'rtings', 'form': 'earbud', 'rig': 'unknown'},
+                {'source': 'HypetheSonics', 'form': 'over-ear'},
+                {'source': 'HypetheSonics', 'form': 'earbud'},
+                {'source': 'Rtings', 'form': 'over-ear', 'rig': 'Bruel & Kjaer 5128'},
+                {'source': 'Rtings', 'form': 'earbud', 'rig': 'Bruel & Kjaer 5128'},
             ],
-            'bassBoost': {'fc': 105, 'q': 0.7, 'gain': 9.5}
-        },
-        {
-            'file': TARGETS_PATH.joinpath('rtings_harman_in-ear_2019v2_wo_bass.csv'),
-            'label': 'Rtings Harman In-ear 2019',
-            'compatible': [
-                {'source': 'rtings', 'form': 'in-ear', 'rig': 'unknown'},
-                {'source': 'rtings', 'form': 'earbud', 'rig': 'unknown'},
-            ],
-            'recommended': [],
-            'bassBoost': {'fc': 105, 'q': 0.7, 'gain': 9.5}
-        },
-        {
-            'file': TARGETS_PATH.joinpath('rtings_harman_over-ear_2018_wo_bass.csv'),
-            'label': 'Rtings Harman Over-ear 2018',
-            'compatible': [{'source': 'rtings', 'form': 'over-ear', 'rig': 'unknown'}],
-            'recommended': [{'source': 'rtings', 'form': 'over-ear', 'rig': 'unknown'}],
             'bassBoost': {'fc': 105, 'q': 0.7, 'gain': 6}
         },
     ]
-    for compensation in compensations:
-        compensation['fr'] = FrequencyResponse.read_csv(compensation['file']).to_dict()
-        del compensation['file']
-    with open(WEBAPP_PATH.joinpath('data', 'compensations.json'), 'w', encoding='utf-8') as fh:
-        json.dump(compensations, fh, ensure_ascii=False, indent=4)
+    ####### [END] standard from dbtools ########
+
+    ####### [BEGIN] add targets from nebulabox ########
+    for csv_file in MEASUREMENTS_PATH.glob('nebulabox/data/**/*.csv'):
+        new_target = {
+            'file': Path(csv_file),
+            'label': csv_file.name,
+            'compatible': [
+                {'source': 'nebulabox', 'form': 'over-ear'},
+                {'source': 'nebulabox', 'form': 'in-ear'}
+            ],
+            'recommended': [],
+            'bassBoost': {'fc': 105, 'q': 0.7, 'gain': 6}
+        }
+        targets.append(new_target)
+    ####### [END] add targets from nebulabox ########
+
+    for target in targets:
+        if 'label' not in target:
+            target['label'] = target['file'].name.replace('.csv', '')
+        if 'compatible' not in target:
+            target['compatible'] = []
+        if 'recommended' not in target:
+            target['recommended'] = []
+        target['fr'] = FrequencyResponse.read_csv(target['file']).to_dict()
+        del target['file']
+    with open(WEBAPP_PATH.joinpath('data', 'targets.json'), 'w', encoding='utf-8') as fh:
+        json.dump(targets, fh, ensure_ascii=False, indent=4)
+
 
 
 def main():
     write_entries_and_measurements()
-    # FileNotFoundError: [Errno 2] No such file or directory: '/app/targets/autoeq_in-ear.csv
-    # write_compensations()
-
+    write_targets()
 
 if __name__ == '__main__':
     main()

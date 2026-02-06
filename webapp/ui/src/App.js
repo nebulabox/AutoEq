@@ -289,12 +289,19 @@ const App = (props) => {
       return;
     }
     const targetLabel = getPreferredTarget(measurement.source, measurement.form, measurement.rig);
+    // alert(`Source: ${measurement.source}, Form: ${measurement.form}, rig: ${measurement.rig}, targetLabel: ${targetLabel}`); 
     setShowInfo(false);
     setSelectedMeasurement(cloneDeep(measurement));
     setSelectedTarget(targetLabel);
-    bassBoostFcRef.current = targetsBassBoostsRef.current[targetLabel].fc;
-    bassBoostQRef.current = targetsBassBoostsRef.current[targetLabel].q;
-    bassBoostGainRef.current = targetsBassBoostsRef.current[targetLabel].gain;
+    if (targetsBassBoostsRef.current == null || targetsBassBoostsRef.current == null || targetsBassBoostsRef.current.length == null) {
+      bassBoostFcRef.current = 105;
+      bassBoostQRef.current = 0.7;
+      bassBoostGainRef.current = 6;
+    } else {
+      bassBoostFcRef.current = targetsBassBoostsRef.current[targetLabel].fc;
+      bassBoostQRef.current = targetsBassBoostsRef.current[targetLabel].q;
+      bassBoostGainRef.current = targetsBassBoostsRef.current[targetLabel].gain;
+    }
     equalize(true);
   };
 
