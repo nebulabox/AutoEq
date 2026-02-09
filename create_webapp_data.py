@@ -365,7 +365,17 @@ def write_targets():
                 {'source': 'nebulabox', 'form': 'in-ear'}
             ],
             'recommended': [],
-            'bassBoost': {'fc': 105, 'q': 0.7, 'gain': 6}
+            'bassBoost': {'fc': 105, 'q': 0.7, 'gain': 0}
+        }
+        targets.append(new_target)
+    # add all others
+    for csv_file in MEASUREMENTS_PATH.glob('*/data/**/*.csv'):
+        if csv_file.parts[1] == 'nebulabox':
+            continue
+        new_target = {
+            'file': Path(csv_file),
+            'label': csv_file.name,
+            'bassBoost': {'fc': 105, 'q': 0.7, 'gain': 0}
         }
         targets.append(new_target)
     ####### [END] add targets from nebulabox ########
