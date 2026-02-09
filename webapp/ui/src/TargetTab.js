@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {
+  Box,
   Button,
   Chip,
   Grid,
@@ -123,6 +124,19 @@ const TargetTab = (props) => {
             }}
             useSelect={isSm}
             tooltip='Target frequency response. Equalizer settings will attempt to make the headphone match this. A good target is automatically selected based on measurement.'
+            virtualize
+            renderOption={(liProps, option, style) => (
+              <Box component='li' { ...liProps } style={{ ...style, top: (style.top) + 8, borderBottom: '1px solid #eee' }}>
+                <Typography>{option.label}</Typography>
+                <Typography variant='caption' sx={{whiteSpace: 'nowrap', ml: 'auto', textAlign: 'right'}}>
+                  {
+                    //`${option.source}`
+                    // Object.keys(option)
+                  // option.source !== 'unknown' && (`by ${option.source}`)
+                  }
+                </Typography> 
+              </Box>
+            )}
           />
         </Grid>
       )}

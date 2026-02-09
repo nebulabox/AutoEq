@@ -96,7 +96,8 @@ def measurement_rank(entry):
 def write_entries_and_measurements():
     entries = dict()
     measurements = dict()
-    for hp_path in tqdm(list(MEASUREMENTS_PATH.glob('nebulabox/data/**/*.csv'))):
+    files = sorted(MEASUREMENTS_PATH.glob('**/data/**/*.csv'), key=lambda x: x.name)
+    for hp_path in tqdm(files):
         parts = hp_path.parts[hp_path.parts.index('data') + 1:]
         source = hp_path.parts[hp_path.parts.index('data') - 1]
         form = parts[0]
@@ -356,10 +357,12 @@ def write_targets():
     ####### [END] standard from dbtools ########
 
     ####### [BEGIN] add targets from nebulabox ########
+
     for csv_file in MEASUREMENTS_PATH.glob('nebulabox/data/**/*.csv'):
         new_target = {
             'file': Path(csv_file),
             'label': csv_file.name,
+            'source' : 'nebulabox',
             'compatible': [
                 {'source': 'nebulabox', 'form': 'over-ear'},
                 {'source': 'nebulabox', 'form': 'in-ear'}
@@ -369,12 +372,16 @@ def write_targets():
         }
         targets.append(new_target)
     # add all others
-    for csv_file in MEASUREMENTS_PATH.glob('*/data/**/*.csv'):
-        if csv_file.parts[1] == 'nebulabox':
+    # 使用 key=lambda x: x.name 确保只根据文件名排序
+    sorted_files = sorted(MEASUREMENTS_PATH.glob('*/data/**/*.csv'), key=lambda x: x.name)
+    for csv_file in sorted_files:
+        source = csv_file.parts[csv_file.parts.index('data') - 1]
+        if source == 'nebulabox':
             continue
         new_target = {
             'file': Path(csv_file),
-            'label': csv_file.name,
+            'label': csv_file.name.replace('.csv', ''),
+            'source' : source,
             'bassBoost': {'fc': 105, 'q': 0.7, 'gain': 0}
         }
         targets.append(new_target)

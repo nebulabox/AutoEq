@@ -180,10 +180,10 @@ const App = (props) => {
     let target = find(
       targetsRef.current,
       (target) => target.label === selectedTargetRef.current);
-    if (target.frequency) {
+    if (target && target.frequency) {
       target = { frequency: target.frequency, raw: target.raw };
-    } else{
-      target = target.label;
+    } else {
+      if (target && target.label) target = target.label;
     }
 
     const eqParams = {
@@ -218,6 +218,7 @@ const App = (props) => {
     }
 
     try {
+      if (!apiClientRef.current) return;
       const res = await apiClientRef.current.equalize(eqParams, audioContextRef.current);
 
       if (res === undefined) {
@@ -296,7 +297,7 @@ const App = (props) => {
     if (targetsBassBoostsRef.current == null || targetsBassBoostsRef.current == null || targetsBassBoostsRef.current.length == null) {
       bassBoostFcRef.current = 105;
       bassBoostQRef.current = 0.7;
-      bassBoostGainRef.current = 6;
+      bassBoostGainRef.current = 0;
     } else {
       bassBoostFcRef.current = targetsBassBoostsRef.current[targetLabel].fc;
       bassBoostQRef.current = targetsBassBoostsRef.current[targetLabel].q;
@@ -405,7 +406,7 @@ const App = (props) => {
       raw: obj.raw,
       compatible: [],
       recommended: [],
-      bassBoost: { fc: 105, q: 0.7, gain: 0.0 }
+      bassBoost: { fc: 105, q: 0.7, gain: 0.0 },
     };
     newTargets.push(newTarget);
     newTargetsBassBoosts[name] = { fc: 105, q: 0.7, gain: 0.0 };
