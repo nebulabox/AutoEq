@@ -383,16 +383,27 @@ const App = (props) => {
 
   const onTargetSelected = (target) => {
     const newPreferredTarget = cloneDeep(preferredTargetsRef.current);
-    if (typeof(newPreferredTarget[selectedMeasurementRef.current.source][selectedMeasurementRef.current.form]) !== 'string') {
-      newPreferredTarget[selectedMeasurementRef.current.source][selectedMeasurementRef.current.form][selectedMeasurementRef.current.rig] = target.label;
+    const { source, form, rig } = selectedMeasurementRef.current;
+    // 1. Ensure the 'source' object exists
+    if (!newPreferredTarget[source]) {
+      newPreferredTarget[source] = {};
+    }
+    // 2. Safely check the type and assign
+    const currentFormValue = newPreferredTarget[source][form];
+    if (currentFormValue && typeof currentFormValue !== 'string') {
+      // It's an object/nested structure, assign to the rig level
+      newPreferredTarget[source][form][rig] = target.label;
     } else {
-      newPreferredTarget[selectedMeasurementRef.current.source][selectedMeasurementRef.current.form] = target.label;
+      // It's either a string or doesn't exist yet, assign to the form level
+      newPreferredTarget[source][form] = target.label;
     }
     setSelectedTarget(target.label);
     setPreferredTargets(newPreferredTarget);
-    bassBoostFcRef.current = targetsBassBoostsRef.current[target.label].fc;
-    bassBoostQRef.current = targetsBassBoostsRef.current[target.label].q;
-    bassBoostGainRef.current = targetsBassBoostsRef.current[target.label].gain;
+    // Note: Make sure targetsBassBoostsRef.current[target.label] exists too!
+    const boost = targetsBassBoostsRef.current[target.label] || { fc: 0, q: 0, gain: 0 };
+    bassBoostFcRef.current = boost.fc;
+    bassBoostQRef.current = boost.q;
+    bassBoostGainRef.current = boost.gain;
     equalize(true);
   };
 
