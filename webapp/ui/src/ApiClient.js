@@ -153,7 +153,7 @@ class ApiClient {
     // Decode base64 encoded half-precision binary arrays
     const fr = {};
     for (const [key, val] of Object.entries(data.fr)) {
-      if (base64fp16) {
+      if (base64fp16 && val && val === 'string') {
         const uint16arr = new Uint16Array(decode(val));
         const arr = [];
         for (const x of uint16arr) {
